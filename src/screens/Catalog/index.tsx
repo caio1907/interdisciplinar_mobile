@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 import styleFile from './styles';
+import ProductType from '../../types/Product.type';
 import Product from '@Components/Product';
 import { database } from '@Services/firebase';
-import ProductType from '../../types/Product.type';
-import { collection, onSnapshot } from 'firebase/firestore';
 import { addToCart } from '@Store/Cart.store';
 import store from '@Store/index';
+import FABIcons from '@Components/FABIcons';
 
 const Catalog: React.FC = () => {
   const styles = styleFile();
@@ -42,6 +43,7 @@ const Catalog: React.FC = () => {
           ))}
         </View>
       </ScrollView>
+      <FABIcons/>
     </View>
   );
 }

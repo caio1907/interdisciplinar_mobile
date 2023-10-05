@@ -24,5 +24,12 @@ export default () => StyleSheet.create({
   card: {
     width: (width - 45) / 2,
     marginBottom: 12
+  },
+  notFound: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    maxHeight: 50,
+    paddingHorizontal: 16
   }
 });

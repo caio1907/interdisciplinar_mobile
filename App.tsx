@@ -10,21 +10,16 @@ import Routes from './src/routes';
 import { ThemeProp } from 'react-native-paper/lib/typescript/types';
 import { setLoading } from './src/utils/loadingState';
 
-const theme: ThemeProp = {
-  ...MD3DarkTheme,
-  animation: {
-    scale: 5
-  },
-  colors: {
-    ...MD3DarkTheme.colors,
-    primary: "rgb(130, 219, 126)"
-  },
-  dark: true,
-  mode: 'adaptive',
-  roundness: 8
-}
-
 export default function App() {
+  const theme: ThemeProp = {
+    ...MD3DarkTheme,
+    animation: {
+      scale: 5
+    },
+    dark: true,
+    mode: 'adaptive'
+  }
+
   useEffect(() => {
     const update = async () => {
       const { isAvailable } = await Updates.checkForUpdateAsync();
