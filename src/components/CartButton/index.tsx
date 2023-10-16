@@ -28,7 +28,7 @@ const CartButton: React.FC<Props> = ({navigation}) => {
               position: 'absolute',
               top: 4,
               right: 0,
-              backgroundColor: theme.colors.primary,
+              backgroundColor: '#82DB7E',
               color: theme.colors.surface
             }}
           >

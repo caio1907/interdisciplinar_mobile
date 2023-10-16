@@ -21,7 +21,8 @@ const Product: React.FC<{product: ProductType, handlePressButton: (product: Prod
           <Text>{currencyFormat(price)}</Text>
         </View>
         <IconButton
-          icon="cart-plus"
+          icon='cart-plus'
+          iconColor='#82DB7E'
           onPress={() => handlePressButton(product)}
         />
       </Card.Actions>
