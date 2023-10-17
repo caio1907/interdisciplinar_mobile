@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { Card, IconButton, Text } from 'react-native-paper';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import styleFile from './style';
 import ProductType from '../../types/Product.type';
@@ -12,21 +12,27 @@ const Product: React.FC<{product: ProductType, handlePressButton: (product: Prod
   const styles = styleFile();
 
   return (
-    <Card mode='elevated' style={styles.container} contentStyle={{width: '100%'}}>
-      {image_url && <Card.Cover source={{ uri: image_url }} resizeMethod='resize' style={{borderRadius: 8}}/>}
-      <Card.Content>
-      </Card.Content>
-      <Card.Actions>
-        <View>
-          <Text>{currencyFormat(price)}</Text>
-        </View>
-        <IconButton
-          icon='cart-plus'
-          iconColor='#82DB7E'
-          onPress={() => handlePressButton(product)}
-        />
-      </Card.Actions>
-    </Card>
+    <>
+      <Card mode='elevated' style={styles.container} contentStyle={{width: '100%'}}>
+        {image_url && <Card.Cover source={{ uri: image_url }} resizeMethod='resize' style={{borderRadius: 8}}/>}
+        <Card.Actions>
+          <View>
+            <Text>{currencyFormat(price)}</Text>
+          </View>
+          <IconButton
+            icon='cart-plus'
+            iconColor='#82DB7E'
+            onPress={() => handlePressButton(product)}
+            disabled={product.quantity === 0}
+          />
+        </Card.Actions>
+      </Card>
+      <View style={styles.textContainer}>
+        <LinearGradient colors={['rgba(0,0,0,0.5)', 'transparent']} style={styles.textLinearGradient}>
+          <Text style={styles.text}>{product.description}</Text>
+        </LinearGradient>
+      </View>
+    </>
   )
 }
 
