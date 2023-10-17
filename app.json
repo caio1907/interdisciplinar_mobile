@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CERVAC Store",
-    "slug": "CERVAC Store",
+    "slug": "cervac-store",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ab1bf4eb-b025-4701-a43b-d518aee8222a"
+      }
+    },
+    "owner": "caio1907"
   }
 }

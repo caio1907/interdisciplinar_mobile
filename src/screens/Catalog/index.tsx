@@ -9,17 +9,18 @@ import { database } from '@Services/firebase';
 import { addToCart } from '@Store/Cart.store';
 import store from '@Store/index';
 import FABIcons from '@Components/FABIcons';
+import SearchBar from '@Components/SearchBar';
 
 const Catalog: React.FC = () => {
   const styles = styleFile();
   const [catalog, setCatalog] = useState<ProductType[]>([]);
+  const [textFilter, setTextFilter] = useState<string>('');
 
   useEffect(() => {
     const snapshot = onSnapshot(collection(database, 'catalog'), (snapshot) => {
       setCatalog(snapshot.docs.map(doc => ({
         ...(doc.data() as ProductType),
-        id: +doc.id,
-        quantity: 0
+        id: +doc.id
       })));
     });
 
@@ -35,8 +36,11 @@ const Catalog: React.FC = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
+        <View style={styles.searchBar}>
+          <SearchBar handleTextSearch={setTextFilter}/>
+        </View>
         <View style={styles.cardContainer}>
-          {catalog.map((product, index) => (
+          {catalog.filter(product => product.description.toLowerCase().includes(textFilter.toLowerCase())).map((product, index) => (
             <View key={index} style={styles.card}>
               <Product {...{product, handlePressButton}}/>
             </View>

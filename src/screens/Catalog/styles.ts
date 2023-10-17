@@ -8,6 +8,10 @@ export default () => StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  searchBar: {
+    marginHorizontal: 16,
+    marginBottom: 16
+  },
   scrollView: {
     flex: 1,
     width: '100%',
