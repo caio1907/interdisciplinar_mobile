@@ -3,7 +3,8 @@ import { RootState } from ".";
 import ConfigType from "../types/Config.type";
 
 const initialState: ConfigType = {
-  logo: ''
+  logo: '',
+  whatsapp_sales: ''
 };
 
 const store = createSlice({
@@ -12,6 +13,7 @@ const store = createSlice({
   reducers: {
     setConfig(state, {payload}) {
       state.logo = payload.logo;
+      state.whatsapp_sales = payload.whatsapp_sales;
     }
   }
 });

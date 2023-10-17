@@ -3,16 +3,18 @@ import { Image, StatusBar } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Avatar } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
+import { doc, getDoc } from 'firebase/firestore';
 
 import Catalog from '@Screens/Catalog';
 import Cart from '@Screens/Cart';
-import CartButton from '@Components/CartButton';
 import Start from '@Screens/Start';
+import CartButton from '@Components/CartButton';
 import Loader from '@Components/Loader';
 import { setLoading } from './utils/loadingState';
 import { getImageUrl } from './utils/imageUrl';
-import { useDispatch, useSelector } from 'react-redux';
 import { getConfig, setConfig } from '@Store/Config.store';
+import { database } from '@Services/firebase';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +26,9 @@ const Routes: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     getImageUrl('logo.png').then(logo => {
-      dispatch(setConfig({logo}));
+      getDoc(doc(database, 'config', 'contact')).then(collection => {
+        dispatch(setConfig({logo, whatsapp_sales: collection.get('whatsapp_sales')}));
+      });
     });
     AsyncStorage.getItem('startup').then((value) => {
       if (value) {

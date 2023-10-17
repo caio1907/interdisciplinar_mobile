@@ -8,11 +8,13 @@ import { addToCart, decreaseCartItem, getCart } from '@Store/Cart.store';
 import ProductType from '../../types/Product.type';
 import stylesFile from './styles';
 import { useNavigation } from '@react-navigation/native';
+import { getConfig } from '@Store/Config.store';
 
 const Cart: React.FC = () => {
   const styles = stylesFile();
   const navigation = useNavigation();
   const { cart } = useSelector(getCart);
+  const { whatsapp_sales } = useSelector(getConfig);
   const dispatch = useDispatch();
   const [showDialog, setShowDialog] = useState(false);
 
@@ -44,7 +46,7 @@ const Cart: React.FC = () => {
   const redirectToWhatsApp = () => {
     const productsToString = productsOfCart.map(product => `${product.quantity}x - ${product.description}`).join('\n');
     const message = `Olá! Gostaria de realizar o pedido com o(s) seguinte(s) produto(s):\n${productsToString}`;
-    Linking.openURL(`https://wa.me/5581986667860?text=${message}`);
+    Linking.openURL(`https://wa.me/${whatsapp_sales}?text=${message}`);
   }
 
   return (
